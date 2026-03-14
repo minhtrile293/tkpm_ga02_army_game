@@ -1,6 +1,6 @@
 package core;
 
-public interface Soldier {
+public interface ISoldier {
     int hit();
     boolean wardOff(int strength);
 }

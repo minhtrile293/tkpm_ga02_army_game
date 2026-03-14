@@ -1,19 +1,19 @@
 package equipments;
 
-import core.Soldier;
+import core.ISoldier;
 
-public abstract class EquipmentDecorator implements Soldier {
-    protected Soldier mSoldier;
+public abstract class EquipmentDecorator implements ISoldier {
+    protected ISoldier mSoldier;
     protected int durability; 
-    public EquipmentDecorator(Soldier soldier){
+    public EquipmentDecorator(ISoldier soldier){
         mSoldier = soldier;
     }
 
-    public Soldier getSoldier(){
+    public ISoldier getSoldier(){
         return mSoldier;
     }
 
-    public void setSoldier(Soldier soldier){
+    public void setSoldier(ISoldier soldier){
         mSoldier = soldier;
     }
 }

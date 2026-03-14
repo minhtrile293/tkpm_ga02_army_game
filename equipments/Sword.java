@@ -1,9 +1,9 @@
 package equipments;
 
-import core.Soldier;
+import core.ISoldier;
 
 public class Sword extends EquipmentDecorator{
-    public Sword(Soldier solider){
+    public Sword(ISoldier solider){
         super(solider);
         durability = 50;
     }

@@ -1,9 +1,9 @@
 package equipments;
 
-import core.Soldier;
+import core.ISoldier;
 
 public class Shield extends EquipmentDecorator{
-    public Shield(Soldier solider){
+    public Shield(ISoldier solider){
         super(solider);
         durability = 100;
     }

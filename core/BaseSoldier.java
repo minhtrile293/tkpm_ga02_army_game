@@ -1,6 +1,6 @@
 package core;
 
-public abstract class BaseSoldier implements Soldier{ 
+public abstract class BaseSoldier implements ISoldier{ 
     protected int baseHp;
     protected int baseStrength;
     public BaseSoldier(int hp, int strength){
