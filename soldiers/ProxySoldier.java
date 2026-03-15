@@ -1,4 +1,4 @@
-package soliders;
+package soldiers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +7,7 @@ import core.ISoldier;
 import equipments.EquipmentDecorator;
 import equipments.Shield;
 import equipments.Sword;
+import visitor.IVisitor;
 
 public class ProxySoldier implements Soldier{
     private ISoldier mSoldier;
@@ -30,30 +31,18 @@ public class ProxySoldier implements Soldier{
                 System.out.println("Error: " + e.getMessage());
             }
         } else {
-            System.out.println("The Soldier was equipped the "+ equipmentClass.getSimpleName());
+            System.out.println("The Soldier has already equipped the " + equipmentClass.getSimpleName());
         }
     }
 
     @Override
     public void addSword(){
-        if (!hasSword) {
-            System.out.println("The Sword equipped successfully");
-            mSoldier = new Sword(mSoldier);
-            hasSword = true;
-        } else {
-            System.out.println("The Soldier was equipped the Sword");
-        }
+        addEquipment(Sword.class);
     }
 
     @Override
     public void addShield(){
-        if (!hasShield) {
-            System.out.println("The Shield equipped successfully");
-            mSoldier = new Shield(mSoldier);
-            hasShield = true;
-        } else {
-            System.out.println("The Soldier was equipped the Shield");
-        }
+        addEquipment(Shield.class);
     }
 
     @Override
@@ -64,5 +53,42 @@ public class ProxySoldier implements Soldier{
     @Override
     public boolean wardOff(int strength){
         return mSoldier.wardOff(strength);
+    }
+
+    public String getEquipmentString() {
+        if (weapons == null || weapons.isEmpty()) {
+            return "No Equipment";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < weapons.size(); i++) {
+            sb.append(weapons.get(i).getEquipmentName());
+            
+            // Chỉ thêm " + " nếu đây chưa phải là phần tử cuối cùng
+            if (i < weapons.size() - 1) {
+                sb.append(" + ");
+            }
+        }
+        return sb.toString();
+    }
+
+    @Override
+    public String getName() {
+        return mSoldier.getName();
+    }
+
+    @Override
+    public String getArmName() {
+        return mSoldier.getArmName();
+    }
+
+    @Override
+    public void accept(IVisitor visitor) {
+        this.mSoldier.accept(visitor);
+    }
+
+    @Override
+    public boolean isDead() {
+        return this.mSoldier.isDead();
     }
 }

@@ -1,18 +1,24 @@
 package equipments;
 
 import core.ISoldier;
+import visitor.IVisitor;
 
 public class Shield extends EquipmentDecorator{
-    public Shield(ISoldier solider){
-        super(solider);
-        durability = 100;
+    private ISoldier wrapee;
+
+    public Shield(ISoldier soldier){
+        super(soldier);
+
+        wrapee = soldier;
+        durability = 50;
     }
     
     @Override
     public int hit(){
         int damage = mSoldier.hit();
         int totalDamage = damage + durability;
-        System.out.println("Shield adds " + durability +  " damage with (" + damage + " -> " + totalDamage + ")");
+        System.out.printf("[Shield Bash] Bonus Damage: +%d | Total: (%d + %d) = %d%n", 
+    durability, damage, durability, totalDamage);
         if (durability > 0){
             durability -= 10;
         }
@@ -21,11 +27,49 @@ public class Shield extends EquipmentDecorator{
 
     @Override
     public boolean wardOff(int strength){
-        int totalStrength = strength - durability;
-        System.out.println("Shield reduces enemy strength by " + durability + " with (" + strength + " -> " + totalStrength + ")");
+        int totalAbsorb = Math.max(0, strength - durability);
+        System.out.printf("[Shield] Absorbed: -%d | Enemy Strength: %d -> %d%n", 
+    durability, strength, totalAbsorb);
         if (durability > 0){
-            durability -= 20;
+            durability -= 10;
         } 
-        return mSoldier.wardOff(totalStrength);
+        return mSoldier.wardOff(totalAbsorb);
+    }
+
+    @Override
+    public String getEquipmentName() {
+        return "Shield";
+    }
+
+    @Override
+    public String getName() {
+        return this.wrapee.getName();
+    }
+
+    @Override
+    public String getArmName() {
+        return this.wrapee.getArmName();
+    }
+
+    @Override
+    public void accept(IVisitor visitor) {
+        this.mSoldier.accept(visitor);
+    }
+
+    @Override
+    public String getEquipmentString() {
+        String equipmentName = getEquipmentName();
+        String previousWeapon = this.wrapee.getEquipmentString();
+
+        if (previousWeapon == null || previousWeapon.equals("None") || previousWeapon.isEmpty()) {
+            return equipmentName;
+        } else {
+            return previousWeapon + " + " + equipmentName;
+        }
+    }
+
+    @Override
+    public boolean isDead() {
+        return this.wrapee.isDead();
     }
 }

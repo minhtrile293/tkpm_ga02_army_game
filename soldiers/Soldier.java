@@ -1,4 +1,4 @@
-package soliders;
+package soldiers;
 
 import core.ISoldier;
 import equipments.EquipmentDecorator;

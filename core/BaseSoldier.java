@@ -1,10 +1,31 @@
 package core;
 
 public abstract class BaseSoldier implements ISoldier{ 
+    protected int curHp;    
     protected int baseHp;
     protected int baseStrength;
-    public BaseSoldier(int hp, int strength){
+
+    protected String name = "BaseSoldier";
+
+    public BaseSoldier(String soldierName, int hp, int strength){
+        curHp = hp;
         baseHp = hp;
         baseStrength = strength;
+        name = soldierName;
     }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String getArmName() {
+        return "BaseSoldier";
+    }
+
+    @Override
+    public boolean isDead() {
+        return false;
+    };
 }
