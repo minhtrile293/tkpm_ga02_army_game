@@ -103,7 +103,7 @@ public class SoldierGroup implements Soldier {
         return sufferDamage(finalStrength);
     }
 
-    public boolean sufferDamage(int finalStrength) {
+    private boolean sufferDamage(int finalStrength) {
         boolean atLeastOneSurvive = false;
         for (BaseSoldier soldier : soldiers) {
             if (!soldier.isDead()) {
