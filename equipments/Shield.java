@@ -4,12 +4,9 @@ import core.ISoldier;
 import visitor.IVisitor;
 
 public class Shield extends EquipmentDecorator{
-    private ISoldier wrapee;
 
     public Shield(ISoldier soldier){
         super(soldier);
-
-        wrapee = soldier;
         durability = 50;
     }
     
@@ -38,12 +35,12 @@ public class Shield extends EquipmentDecorator{
 
     @Override
     public String getName() {
-        return this.wrapee.getName();
+        return this.mSoldier.getName();
     }
 
     @Override
     public String getArmName() {
-        return this.wrapee.getArmName();
+        return this.mSoldier.getArmName();
     }
 
     @Override
@@ -58,6 +55,6 @@ public class Shield extends EquipmentDecorator{
 
     @Override
     public boolean isDead() {
-        return this.wrapee.isDead();
+        return this.mSoldier.isDead();
     }
 }

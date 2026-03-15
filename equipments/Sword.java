@@ -4,12 +4,8 @@ import core.ISoldier;
 import visitor.IVisitor;
 
 public class Sword extends EquipmentDecorator{
-    private ISoldier wrapee;
-    
     public Sword(ISoldier soldier){
         super(soldier);
-
-        wrapee = soldier;
         durability = 100;
     }
     
@@ -27,17 +23,17 @@ public class Sword extends EquipmentDecorator{
 
     @Override
     public boolean wardOff(int strength){
-        return this.wrapee.wardOff(strength);
+        return this.mSoldier.wardOff(strength);
     }
 
     @Override
     public String getName() {
-        return this.wrapee.getName();
+        return this.mSoldier.getName();
     }
 
     @Override
     public String getArmName() {
-        return this.wrapee.getArmName();
+        return this.mSoldier.getArmName();
     }
 
     @Override
@@ -52,6 +48,6 @@ public class Sword extends EquipmentDecorator{
 
     @Override
     public boolean isDead() {
-        return this.wrapee.isDead();
+        return this.mSoldier.isDead();
     }
 }
