@@ -31,11 +31,6 @@ public class Sword extends EquipmentDecorator{
     }
 
     @Override
-    public String getEquipmentName() {
-        return "Sword";
-    }
-
-    @Override
     public String getName() {
         return this.wrapee.getName();
     }
@@ -52,14 +47,7 @@ public class Sword extends EquipmentDecorator{
     
     @Override
     public String getEquipmentString() {
-        String equipmentName = getEquipmentName();
-        String previousWeapon = this.wrapee.getEquipmentString();
-
-        if (previousWeapon == null || previousWeapon.equals("None") || previousWeapon.isEmpty()) {
-            return equipmentName;
-        } else {
-            return previousWeapon + " + " + equipmentName;
-        }
+        return "Sword";
     }
 
     @Override

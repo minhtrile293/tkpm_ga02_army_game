@@ -37,11 +37,6 @@ public class Shield extends EquipmentDecorator{
     }
 
     @Override
-    public String getEquipmentName() {
-        return "Shield";
-    }
-
-    @Override
     public String getName() {
         return this.wrapee.getName();
     }
@@ -58,14 +53,7 @@ public class Shield extends EquipmentDecorator{
 
     @Override
     public String getEquipmentString() {
-        String equipmentName = getEquipmentName();
-        String previousWeapon = this.wrapee.getEquipmentString();
-
-        if (previousWeapon == null || previousWeapon.equals("None") || previousWeapon.isEmpty()) {
-            return equipmentName;
-        } else {
-            return previousWeapon + " + " + equipmentName;
-        }
+        return "Shield";
     }
 
     @Override

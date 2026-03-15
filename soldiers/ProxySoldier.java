@@ -62,7 +62,7 @@ public class ProxySoldier implements Soldier{
 
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < weapons.size(); i++) {
-            sb.append(weapons.get(i).getEquipmentName());
+            sb.append(weapons.get(i).getEquipmentString());
             
             // Chỉ thêm " + " nếu đây chưa phải là phần tử cuối cùng
             if (i < weapons.size() - 1) {

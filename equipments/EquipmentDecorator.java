@@ -17,7 +17,7 @@ public abstract class EquipmentDecorator implements ISoldier {
         mSoldier = soldier;
     }
 
-    public String getEquipmentName() {
+    public String getEquipmentString() {
         return "EquipmentDecorator";
     } 
 }
